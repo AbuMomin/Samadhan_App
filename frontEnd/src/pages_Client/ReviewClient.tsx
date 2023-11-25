@@ -1,10 +1,16 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Button, Text, View } from "react-native";
 
-const ReviewClientPage = () => {
+const ReviewClientPage = (props: any) => {
+  const navHandler = () => {
+    props.navigation.navigate("Pages");
+  };
   return (
     <View>
       <Text>Hello To Review Page</Text>
+      <View>
+        <Button title="Other Essential Pages" onPress={navHandler} />
+      </View>
     </View>
   );
 };

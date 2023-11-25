@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   appName: {
     fontSize: 50,
     fontWeight: "bold",
-    color: "#333",
+    color: "#3498db", // Change the text color to a more eye-catching color
     textShadowColor: "#aaa",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
