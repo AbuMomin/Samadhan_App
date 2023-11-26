@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import TagInput from "react-native-tag-input";
 import { Picker } from "@react-native-picker/picker";
 
 const JobPostingPage: React.FC = () => {
@@ -15,6 +14,7 @@ const JobPostingPage: React.FC = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [fullAddress, setFullAddress] = useState("");
   const [locationTags, setLocationTags] = useState<string[]>([]);
+  const [currentTag, setCurrentTag] = useState("");
   const [urgency, setUrgency] = useState("");
 
   const handlePostJob = () => {
@@ -28,6 +28,19 @@ const JobPostingPage: React.FC = () => {
       locationTags,
       urgency,
     });
+  };
+
+  const addTag = () => {
+    if (currentTag.trim() !== "") {
+      setLocationTags([...locationTags, currentTag.trim()]);
+      setCurrentTag("");
+    }
+  };
+
+  const removeTag = (index: number) => {
+    const newTags = [...locationTags];
+    newTags.splice(index, 1);
+    setLocationTags(newTags);
   };
 
   return (
@@ -61,16 +74,31 @@ const JobPostingPage: React.FC = () => {
 
       <View style={styles.tagsContainer}>
         <Text>Location Tags:</Text>
-        <TagInput
-          value={locationTags}
-          onChange={(tags) => setLocationTags(tags)}
-        />
+        <View style={styles.tagInputContainer}>
+          {locationTags.map((tag, index) => (
+            <TouchableOpacity
+              key={index}
+              onPress={() => removeTag(index)}
+              style={styles.tag}
+            >
+              <Text style={styles.tagText}>{tag}</Text>
+            </TouchableOpacity>
+          ))}
+          <TextInput
+            style={styles.tagInput}
+            placeholder="Add Location"
+            value={currentTag}
+            onChangeText={(text) => setCurrentTag(text)}
+            onBlur={addTag}
+            onSubmitEditing={addTag}
+          />
+        </View>
       </View>
 
       <Picker
         selectedValue={urgency}
         onValueChange={(itemValue) => setUrgency(itemValue)}
-        style={styles.input}
+        // style={styles.picker}
       >
         <Picker.Item label="Within 24 hours" value="24h" />
         <Picker.Item label="Within 48 hours" value="48h" />
@@ -95,7 +123,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   input: {
-    height: 40,
+    height: 50,
     borderColor: "gray",
     borderWidth: 1,
     marginBottom: 16,
@@ -104,6 +132,34 @@ const styles = StyleSheet.create({
   tagsContainer: {
     marginBottom: 16,
   },
+  tagInputContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+  tag: {
+    backgroundColor: "#e0e0e0",
+    borderRadius: 20,
+    padding: 8,
+    margin: 4,
+  },
+  tagText: {
+    color: "#333",
+  },
+  tagInput: {
+    height: 40,
+    borderColor: "#999",
+    borderWidth: 1,
+    borderRadius: 20,
+    padding: 8,
+    margin: 4,
+    flex: 1,
+  },
+  // picker: {
+  //   height: 40,
+  //   borderColor: 'gray',
+  //   borderWidth: 1,
+  //   marginBottom: 16,
+  // },
   postButton: {
     backgroundColor: "#4caf50",
     padding: 10,
