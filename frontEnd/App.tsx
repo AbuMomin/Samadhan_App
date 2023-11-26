@@ -4,8 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import ClientHomePage from "./src/pages_Client/HomeClientPage";
 import ReviewClientPage from "./src/pages_Client/ReviewClient";
-import AccountClientPage from "./src/pages_Client/AccountClient";
-import ChatClientPage from "./src/pages_Client/ChatClient";
 import Icon from "react-native-vector-icons/FontAwesome";
 import PagesScreen from "./src/common/Pages";
 import LandingPage from "./src/common/LandingPage";
@@ -13,8 +11,14 @@ import GetStartedPage from "./src/common/GetStartedPage";
 import NotificationPage from "./src/common/Notification";
 import RecentChatsPage from "./src/common/RecentChatsPage";
 import ChattingPage from "./src/common/ChattingPage";
+import AccountPage from "./src/common/AccountPage";
+import ProfileSettingsPage from "./src/common/ProfileSettingsPage";
+import HistoryPage from "./src/pages_Client/HistoryPage";
+import JobPostingPage from "./src/pages_Client/JobPostingPage";
+// import LearnAboutSamadhanPage from "./src/common/SamadhanPage";
 
 const stack = createStackNavigator();
+
 const TempReviewScreen = () => {
   return (
     <stack.Navigator screenOptions={{ headerShown: false }}>
@@ -32,6 +36,26 @@ const ChatsStack = () => (
     <stack.Screen name="Chatting" component={ChattingPage} />
   </stack.Navigator>
 );
+
+const AccountStack = () => {
+  return (
+    <stack.Navigator>
+      <stack.Screen name="Account" component={AccountPage} />
+      <stack.Screen name="ProfileSettings" component={ProfileSettingsPage} />
+      <stack.Screen name="History" component={HistoryPage} />
+      {/* <stack.Screen name="LearnMoreSamadhan" component={LearnAboutSamadhanPage} /> */}
+    </stack.Navigator>
+  );
+};
+
+const ClientHomeStack = () => {
+  return (
+    <stack.Navigator>
+      <stack.Screen name="MainHome" component={ClientHomePage} />
+      <stack.Screen name="PostJob" component={JobPostingPage} />
+    </stack.Navigator>
+  );
+};
 
 const Tab = createBottomTabNavigator();
 const App = (props: any) => {
@@ -60,9 +84,9 @@ const App = (props: any) => {
       >
         <Tab.Screen name="Review" component={TempReviewScreen} />
         <Tab.Screen name="Chat" component={ChatsStack} />
-        <Tab.Screen name="Home" component={ClientHomePage} />
+        <Tab.Screen name="Home" component={ClientHomeStack} />
         <Tab.Screen name="Notification" component={NotificationPage} />
-        <Tab.Screen name="Account" component={AccountClientPage} />
+        <Tab.Screen name="Account" component={AccountStack} />
       </Tab.Navigator>
     </NavigationContainer>
   );

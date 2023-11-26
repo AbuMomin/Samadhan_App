@@ -9,6 +9,10 @@ import {
 } from "react-native";
 
 const ClientHomePage = (props: any) => {
+  const navPostJob = () => {
+    props.navigation.navigate("PostJob");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -21,7 +25,7 @@ const ClientHomePage = (props: any) => {
           Connecting Local professionals to Household Service needs.
         </Text>
 
-        <TouchableOpacity style={styles.postJobButton}>
+        <TouchableOpacity style={styles.postJobButton} onPress={navPostJob}>
           <Text style={styles.postJobButtonText}>Post your Household Job</Text>
         </TouchableOpacity>
 

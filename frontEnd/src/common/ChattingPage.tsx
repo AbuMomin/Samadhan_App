@@ -10,7 +10,7 @@ interface ChatMessage {
 
 const ChattingPage: React.FC = () => {
   const chatMessages: ChatMessage[] = [
-    { id: 1, sender: "John Doe", message: "Hello, how can I help you?" },
+    { id: 1, sender: "Afrin Chadni", message: "Hello, how can I help you?" },
     { id: 2, sender: "You", message: "I need plumbing service for my home." },
     // Add more chat messages as needed
   ];
@@ -36,7 +36,7 @@ const ChattingPage: React.FC = () => {
             <Text style={{ color: "#fff", fontWeight: "bold" }}>
               Plumbing Service
             </Text>
-            <Text style={{ color: "#fff" }}>Chatting with John Doe</Text>
+            <Text style={{ color: "#fff" }}>Chatting with Afrin Chadni</Text>
           </View>
         </View>
         {/* Buttons */}
@@ -86,7 +86,7 @@ const ChattingPage: React.FC = () => {
           borderRadius: 8,
         }}
       >
-        <Text>User A has set the Job Amount</Text>
+        <Text>You set the Job Amount : 1000 BDT</Text>
         <View style={{ flexDirection: "row", marginTop: 10 }}>
           <TouchableOpacity>
             <Button
