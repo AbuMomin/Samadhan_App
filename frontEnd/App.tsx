@@ -5,19 +5,22 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ClientHomePage from "./src/pages_Client/HomeClientPage";
 import ReviewClientPage from "./src/pages_Client/ReviewClient";
 import AccountClientPage from "./src/pages_Client/AccountClient";
-import NotificationClientPage from "./src/pages_Client/NotificationClient";
+// import NotificationClientPage from "./src/pages_Client/NotificationClient";
 import ChatClientPage from "./src/pages_Client/ChatClient";
 import Icon from "react-native-vector-icons/FontAwesome";
-import PagesScreen from "./src/Pages";
-import LandingPage from "./src/LandingPage";
+import PagesScreen from "./src/common/Pages";
+import LandingPage from "./src/common/LandingPage";
+import GetStartedPage from "./src/common/GetStartedPage";
+import NotificationPage from "./src/common/Notification";
 
 const stack = createStackNavigator();
 const TempReviewScreen = () => {
   return (
     <stack.Navigator screenOptions={{ headerShown: false }}>
-      <stack.Screen name="Counter" component={ReviewClientPage} />
+      <stack.Screen name="TempReview" component={ReviewClientPage} />
       <stack.Screen name="Pages" component={PagesScreen} />
       <stack.Screen name="LandingPage" component={LandingPage} />
+      <stack.Screen name="GetStartedPage" component={GetStartedPage} />
     </stack.Navigator>
   );
 };
@@ -50,7 +53,7 @@ const App = (props: any) => {
         <Tab.Screen name="Review" component={TempReviewScreen} />
         <Tab.Screen name="Chat" component={ChatClientPage} />
         <Tab.Screen name="Home" component={ClientHomePage} />
-        <Tab.Screen name="Notification" component={NotificationClientPage} />
+        <Tab.Screen name="Notification" component={NotificationPage} />
         <Tab.Screen name="Account" component={AccountClientPage} />
       </Tab.Navigator>
     </NavigationContainer>

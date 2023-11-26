@@ -5,7 +5,7 @@ const LandingPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* Top Logo */}
-      <Image source={require("../assets/logo.png")} style={styles.logo} />
+      <Image source={require("../../assets/logo.png")} style={styles.logo} />
 
       {/* Samadhan Text */}
       <Text style={styles.appName}>Samadhan</Text>
