@@ -30,7 +30,7 @@ const RecentChatsPage: React.FC = (props: any) => {
       image: require("../../assets/plumber.jpg"),
     },
     {
-      id: 1,
+      id: 2,
       jobTitle: "Electronics Service",
       personName: "Momin Win",
       newMessages: 5,
