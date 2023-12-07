@@ -10,7 +10,7 @@ interface ChatMessage {
 
 const ChattingPage: React.FC = () => {
   const chatMessages: ChatMessage[] = [
-    { id: 1, sender: "Afrin Chadni", message: "Hello, how can I help you?" },
+    { id: 1, sender: "Kalam Bhuiyan", message: "Hello, how can I help you?" },
     { id: 2, sender: "You", message: "I need plumbing service for my home." },
     // Add more chat messages as needed
   ];
@@ -87,16 +87,22 @@ const ChattingPage: React.FC = () => {
         }}
       >
         <Text>You set the Job Amount : 1000 BDT</Text>
-        <View style={{ flexDirection: "row", marginTop: 10 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: 10,
+            justifyContent: "center",
+          }}
+        >
           <TouchableOpacity>
             <Button
-              title="Accept the Amount of Job"
+              title="Accept"
               buttonStyle={{ backgroundColor: "#4caf50" }}
             />
           </TouchableOpacity>
           <TouchableOpacity style={{ marginLeft: 10 }}>
             <Button
-              title="Offer another Amount"
+              title="Re-Offer"
               buttonStyle={{ backgroundColor: "#ff5722" }}
             />
           </TouchableOpacity>

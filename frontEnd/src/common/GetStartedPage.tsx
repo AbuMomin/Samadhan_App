@@ -1,7 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const GetStartedPage = ({ navigation }) => {
+const GetStartedPage = (props: any) => {
+  const navRegPro = () => {
+    props.navigation.navigate("RegistrationProfessionalPage");
+  };
+  const navRegUser = () => {
+    props.navigation.navigate("RegistrationUserPage");
+  };
+  const navLogin = () => {
+    props.navigation.navigate("LoginPage");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
@@ -14,25 +24,18 @@ const GetStartedPage = ({ navigation }) => {
           Sign-in, or Register, to get started your journey with Samadhan App.
         </Text>
 
-        {/* Get Started Button */}
-        <TouchableOpacity
-          style={styles.loginBtn}
-          onPress={() => {
-            // add navigation
-          }}
-        >
-          <Text style={styles.loginbuttonText}>Sign In</Text>
+        <TouchableOpacity style={styles.loginBtn} onPress={navLogin}>
+          <Text style={styles.loginbuttonText}>Login</Text>
         </TouchableOpacity>
 
-        {/* Learn about Samadhan Button */}
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={() => {
-            // Implement the action for learning more about Samadhan
-            // navigation.navigate("RegistrationPage");
-          }}
-        >
-          <Text style={styles.registerButtonText}>Register</Text>
+        <TouchableOpacity style={styles.registerButton} onPress={navRegUser}>
+          <Text style={styles.registerButtonText}>Register as USER</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.registerButton} onPress={navRegPro}>
+          <Text style={styles.registerButtonText}>
+            Register as Professional
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -96,6 +99,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 44,
     borderRadius: 8,
+    margin: 10,
   },
   registerButtonText: {
     color: "#fff",

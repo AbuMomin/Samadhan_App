@@ -25,14 +25,14 @@ const RecentChatsPage: React.FC = (props: any) => {
     {
       id: 1,
       jobTitle: "Plumbing Service",
-      personName: "Afrin Chadni",
+      personName: "Kamal Buiyan",
       newMessages: 2,
       image: require("../../assets/plumber.jpg"),
     },
     {
       id: 2,
       jobTitle: "Electronics Service",
-      personName: "Momin Win",
+      personName: "Jamal Chowdhury",
       newMessages: 5,
       image: require("../../assets/electronics.png"),
     },

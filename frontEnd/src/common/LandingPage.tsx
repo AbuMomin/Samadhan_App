@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-const LandingPage = ({ navigation }) => {
+const LandingPage = (props: any) => {
   return (
     <View style={styles.container}>
       {/* Top Logo */}
@@ -20,7 +20,7 @@ const LandingPage = ({ navigation }) => {
         style={styles.getStartedButton}
         onPress={() => {
           // Navigate to the next screen (Landing Page)
-          navigation.navigate("LandingPage");
+          props.navigation.navigate("GetStartedPage");
         }}
       >
         <Text style={styles.buttonText}>Get Started</Text>

@@ -12,10 +12,13 @@ import NotificationPage from "./src/common/Notification";
 import RecentChatsPage from "./src/common/RecentChatsPage";
 import ChattingPage from "./src/common/ChattingPage";
 import AccountPage from "./src/common/AccountPage";
-import ProfileSettingsPage from "./src/common/ProfileSettingsPage";
+import ProfileSettingsPage from "./src/dump/ProfileSettingsPage";
 import HistoryPage from "./src/pages_Client/HistoryPage";
-import JobPostingPage from "./src/pages_Client/JobPostingPage";
-// import LearnAboutSamadhanPage from "./src/common/SamadhanPage";
+// import JobPostingPage from "./src/pages_Client/JobPostingPage";
+import RegistrationProfessionalPage from "./src/pages_Professional/RegistrationProfessionalPage";
+import RegistrationUserPage from "./src/pages_Client/RegistrationUserPage";
+import LoginPage from "./src/common/LoginPage";
+import ProProfilePage from "./src/pages_Professional/ProProfilePage";
 
 const stack = createStackNavigator();
 
@@ -26,6 +29,15 @@ const TempReviewScreen = () => {
       <stack.Screen name="Pages" component={PagesScreen} />
       <stack.Screen name="LandingPage" component={LandingPage} />
       <stack.Screen name="GetStartedPage" component={GetStartedPage} />
+      <stack.Screen
+        name="RegistrationProfessionalPage"
+        component={RegistrationProfessionalPage}
+      />
+      <stack.Screen
+        name="RegistrationUserPage"
+        component={RegistrationUserPage}
+      />
+      <stack.Screen name="LoginPage" component={LoginPage} />
     </stack.Navigator>
   );
 };
@@ -52,7 +64,7 @@ const ClientHomeStack = () => {
   return (
     <stack.Navigator>
       <stack.Screen name="MainHome" component={ClientHomePage} />
-      <stack.Screen name="PostJob" component={JobPostingPage} />
+      <stack.Screen name="ProProfilePage" component={ProProfilePage} />
     </stack.Navigator>
   );
 };
