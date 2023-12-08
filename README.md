@@ -1,6 +1,5 @@
 # Samadhan_App
 
-<<<<<<< HEAD
 ## FrontEnd
 
 React-Native
@@ -12,7 +11,9 @@ Nest.js
 ## FrontEnd
 
 PostgreSQL
-=======
+
+---
+
 ## To - do
 
 - Database Design
@@ -33,4 +34,3 @@ PostgreSQL
 
 - FrontEnd for Registration and Login
 - CRUD on User registration
->>>>>>> feature/ui
