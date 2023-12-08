@@ -7,7 +7,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export class RegUser {
+export class RegUserDTO {
   @ApiProperty({
     name: 'first_name',
     type: String,
@@ -101,4 +101,21 @@ export class RegUser {
   @IsOptional()
   @IsString()
   image_path: string;
+}
+
+export class LoginDTO {
+  @ApiProperty({
+    name: 'email',
+    type: String,
+    example: 'win@gmail.com',
+  })
+  @IsEmail()
+  email: string;
+
+  @ApiProperty({
+    name: 'password',
+    type: String,
+    example: '1234',
+  })
+  password: string;
 }

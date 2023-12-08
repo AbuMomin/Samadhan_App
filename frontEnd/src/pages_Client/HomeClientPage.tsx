@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -10,9 +11,36 @@ import {
 } from "react-native";
 
 const HomePageClient: React.FC = (props: any) => {
+  const [searchText, setSearchText] = useState("");
+  const [professionals, setProfessionals] = useState([]);
+
   const navProfileHandler = () => {
     props.navigation.navigate("ProProfilePage");
   };
+
+  // Fetch Professionals on component mount or when the search term changes
+  useEffect(() => {
+    const fetchProfessionals = async () => {
+      try {
+        let response;
+        if (searchText) {
+          // finding professional based on search
+          response = await axios.get(
+            `http://192.168.0.106:3000/user/search-professionals/?searchText=${searchText}`
+          );
+        } else {
+          response = await axios.get(
+            `http://192.168.0.106:3000/user/all-professionals`
+          );
+        }
+        setProfessionals(response.data);
+      } catch (error) {
+        console.error("Error fetching professionals:", error);
+      }
+    };
+
+    fetchProfessionals();
+  }, [searchText]);
 
   return (
     <View style={styles.container}>
@@ -30,6 +58,8 @@ const HomePageClient: React.FC = (props: any) => {
           <TextInput
             style={styles.searchInput}
             placeholder="Search for services"
+            value={searchText}
+            onChangeText={(text) => setSearchText(text)}
           />
           <TouchableOpacity style={styles.searchButton}>
             <Image
@@ -48,10 +78,9 @@ const HomePageClient: React.FC = (props: any) => {
           contentContainerStyle={styles.professionalsContainer}
           horizontal={false}
         >
-          {/* Generate ten cards */}
-          {Array.from({ length: 10 }).map((_, index) => (
+          {professionals.map((professional) => (
             <TouchableOpacity
-              key={index}
+              key={professional.id}
               style={styles.professionalCard}
               onPress={navProfileHandler}
             >
@@ -59,8 +88,12 @@ const HomePageClient: React.FC = (props: any) => {
                 source={require("../../assets/person.png")}
                 style={styles.professionalImage}
               />
-              <Text style={styles.professionalName}>John Doe</Text>
-              <Text style={styles.professionalExpertise}>Plumbing</Text>
+              <Text style={styles.professionalName}>
+                <Text>{professional.last_name}</Text>
+              </Text>
+              <Text style={styles.professionalExpertise}>
+                <Text>{professional.expertise}</Text>
+              </Text>
             </TouchableOpacity>
           ))}
         </ScrollView>
