@@ -2,57 +2,68 @@ import React from "react";
 import {
   View,
   Text,
-  TouchableOpacity,
   Image,
-  StyleSheet,
+  TextInput,
+  TouchableOpacity,
   ScrollView,
+  StyleSheet,
 } from "react-native";
 
-const ClientHomePage = (props: any) => {
+const HomePageClient: React.FC = (props: any) => {
+  const navProfileHandler = () => {
+    props.navigation.navigate("ProProfilePage");
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        {/* <Image source={require("../../assets/logo.png")} style={styles.logo} /> */}
+        <Image source={require("../../assets/logo.png")} style={styles.logo} />
         <Text style={styles.appName}>Samadhan</Text>
       </View>
 
       <View style={styles.body}>
         <Text style={styles.platformDescription}>
-          Connecting Local professionals to Household Service needs.
+          Connecting Local professionals to Household Service needs
         </Text>
 
-        <TouchableOpacity style={styles.postJobButton}>
-          <Text style={styles.postJobButtonText}>Post your Household Job</Text>
-        </TouchableOpacity>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search for services"
+          />
+          <TouchableOpacity style={styles.searchButton}>
+            <Image
+              source={require("../../assets/search.png")}
+              style={styles.searchIcon}
+            />
+          </TouchableOpacity>
+        </View>
 
         <Text style={styles.jobDescription}>
-          You can post various household and technical issues, such as plumbing,
-          electrical problems, furniture repair, and appliance maintenance.
+          Find professionals for plumbing, electric, electronics, stove,
+          furniture repair and more!
         </Text>
 
-        <View style={styles.ongoingJobsSection}>
-          <Text style={styles.sectionTitle}>Your Ongoing Jobs</Text>
-          {/* Generate two cards */}
-          <ScrollView>
-            <View style={styles.jobCard}>
-              {/* Blurred image background */}
+        <ScrollView
+          contentContainerStyle={styles.professionalsContainer}
+          horizontal={false}
+        >
+          {/* Generate ten cards */}
+          {Array.from({ length: 10 }).map((_, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.professionalCard}
+              onPress={navProfileHandler}
+            >
               <Image
-                source={require("../../assets/plumber.jpg")}
-                style={styles.cardBackground}
+                source={require("../../assets/person.png")}
+                style={styles.professionalImage}
               />
-              <Text style={styles.cardTitle}>Plumbing</Text>
-            </View>
-
-            <View style={styles.jobCard}>
-              {/* Blurred image background */}
-              <Image
-                source={require("../../assets/electrician.jpg")}
-                style={styles.cardBackground}
-              />
-              <Text style={styles.cardTitle}>Electricity</Text>
-            </View>
-          </ScrollView>
-        </View>
+              <Text style={styles.professionalName}>John Doe</Text>
+              <Text style={styles.professionalExpertise}>Plumbing</Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
@@ -62,83 +73,89 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    padding: 16,
   },
   topBar: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 10,
-    height: 80,
-  },
-  logo: {
-    width: 50,
-    height: 50,
-    margin: 8,
-    paddingRight: 20,
-  },
-  appName: {
-    fontSize: 50,
-    fontWeight: "bold",
-    color: "#3498db", // Change the text color to a more eye-catching color
-    textShadowColor: "#aaa",
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
-  },
-  body: {
-    padding: 16,
-  },
-  platformDescription: {
-    fontSize: 14,
-    color: "#555",
     marginBottom: 16,
   },
-  postJobButton: {
-    backgroundColor: "#3498db",
-    padding: 12,
-    borderRadius: 8,
-    alignItems: "center",
-    height: 70,
-    justifyContent: "center",
+  logo: {
+    width: 40,
+    height: 40,
+    marginRight: 8,
   },
-  postJobButtonText: {
-    color: "#fff",
-    fontSize: 16,
+  appName: {
+    fontSize: 24,
     fontWeight: "bold",
+    color: "#3498db",
+  },
+  body: {
+    flex: 1,
+  },
+  platformDescription: {
+    fontSize: 16,
+    marginBottom: 16,
+    color: "#555",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 16,
+  },
+  searchInput: {
+    flex: 1,
+    height: 40,
+    borderColor: "#3498db",
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+  },
+  searchButton: {
+    backgroundColor: "#3498db",
+    marginLeft: 8,
+    padding: 10,
+    borderRadius: 8,
+  },
+  searchIcon: {
+    width: 20,
+    height: 20,
+    tintColor: "#fff",
   },
   jobDescription: {
     fontSize: 14,
-    color: "#777",
-    marginTop: 16,
-  },
-  ongoingJobsSection: {
-    marginTop: 24,
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
     marginBottom: 16,
+    color: "#555",
   },
-  jobCard: {
+  professionalsContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
+  professionalCard: {
+    width: "48%", // Adjust width based on your design
     marginBottom: 16,
-    borderRadius: 12,
+    borderRadius: 8,
     overflow: "hidden",
-    borderColor: "black",
-    borderWidth: 2,
+    borderColor: "#ddd",
+    borderWidth: 1,
   },
-  cardBackground: {
+  professionalImage: {
     width: "100%",
-    height: 150,
+    height: 100, // Adjust height based on your design
+    resizeMode: "cover",
   },
-  cardTitle: {
-    padding: 12,
-    color: "black",
+  professionalName: {
+    padding: 8,
     fontSize: 16,
     fontWeight: "bold",
-    backgroundColor: "white",
-    borderColor: "black",
-    borderWidth: 2,
-    borderRadius: 10,
+    color: "#333",
+  },
+  professionalExpertise: {
+    padding: 8,
+    fontSize: 14,
+    color: "#555",
   },
 });
 
-export default ClientHomePage;
+export default HomePageClient;
