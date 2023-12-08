@@ -6,13 +6,21 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Linking,
 } from "react-native";
 
 const ProProfilePage: React.FC = (props: any) => {
   const { proUserData } = props.route.params;
   const expertises: string[] = proUserData.expertise.split(",");
 
-  console.log(proUserData);
+  const handleCallPress = () => {
+    const phoneNumber = proUserData.phone;
+    Linking.openURL(`tel:${phoneNumber}`);
+  };
+
+  const handleNavigateToChattingPage = () => {
+    props.navigation.navigate("Chat", { screen: "Chatting" });
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -33,7 +41,10 @@ const ProProfilePage: React.FC = (props: any) => {
       {/* Chat and Call Sections */}
       <View style={styles.actionSection}>
         {/* add onPress */}
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity
+          style={styles.actionButton}
+          onPress={handleNavigateToChattingPage}
+        >
           <Image
             source={require("../../assets/chat.png")}
             style={styles.actionIcon}
@@ -42,7 +53,7 @@ const ProProfilePage: React.FC = (props: any) => {
         </TouchableOpacity>
 
         {/* add onPress */}
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={handleCallPress}>
           <Image
             source={require("../../assets/call.png")}
             style={styles.actionIcon}

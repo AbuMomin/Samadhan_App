@@ -116,7 +116,7 @@ const RegistrationUserPage: React.FC = (props: any) => {
             [
               {
                 text: "OK",
-                onPress: () => props.navigation.navigate("LoginPage"), // Navigate to the Login Page
+                onPress: () => props.navigation.navigate("GetStartedPage"), // Navigate to the Login Page
               },
             ],
             { cancelable: false }

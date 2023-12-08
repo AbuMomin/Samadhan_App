@@ -14,11 +14,8 @@ export class UserController {
   }
 
   @Post('login')
-  async loginUser(
-    @Body() userLoginData: LoginDTO,
-  ): Promise<{ userID: number }> {
-    const userID = await this.userService.loginUser(userLoginData);
-    return { userID };
+  async loginUser(@Body() userLoginData: LoginDTO) {
+    return await this.userService.loginUser(userLoginData);
   }
 
   @Get('all-professionals')
@@ -34,5 +31,10 @@ export class UserController {
   @Get('professional')
   getProfessionalById(@Query('proID') professionalUserID: number) {
     return this.userService.getProfessionalById(professionalUserID);
+  }
+
+  @Get('getById')
+  getUserById(@Query('userID') userID: number) {
+    return this.userService.getUserById(userID);
   }
 }

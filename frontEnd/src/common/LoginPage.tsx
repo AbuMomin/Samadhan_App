@@ -11,8 +11,11 @@ import {
   Platform,
   Alert,
 } from "react-native";
+import { useAuth } from "../providers/AuthProvider";
 
 const LoginPage: React.FC = (props: any) => {
+  const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,25 +39,22 @@ const LoginPage: React.FC = (props: any) => {
           "http://192.168.0.106:3000/user/login",
           loginData
         );
-        // console.log(response.data);
-        // Assuming your backend sends a boolean indicating success
-        if (
-          typeof response.data.userID === "number" &&
-          response.data.userID > 0
-        ) {
-          console.log("User successfully Logged In");
-          Alert.alert(
-            "Login Successful",
-            `Welcome! User: ${response.data.userID}`,
-            [
-              {
-                text: "OK",
-              },
-            ],
-            { cancelable: false }
-          );
+        if (response.data) {
+          login(response.data.id, response.data.email, response.data.role);
+          // props.navigation.navigate("Home");
+          // console.log("User successfully Logged In");
+          // Alert.alert(
+          //   "Login Successful",
+          //   `Welcome! User: ${response.data.userID}`,
+          //   [
+          //     {
+          //       text: "OK",
+          //     },
+          //   ],
+          //   { cancelable: false }
+          // );
         } else {
-          console.error("Login failed");
+          console.error("Login failed from LoginPage Else condition");
         }
       } catch (error) {
         Alert.alert(

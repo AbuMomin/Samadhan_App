@@ -21,17 +21,30 @@ export class UserService {
     }
   }
 
-  async loginUser(userLoginData: LoginDTO): Promise<number> {
+  async loginUser(userLoginData: LoginDTO): Promise<User> {
     const { email, password } = userLoginData;
 
     const user = await this.userRepository.findOne({
       where: { email, password },
+      select: [
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+        'role',
+        'phone',
+        'location_tag',
+        'address',
+        'expertise',
+        'description',
+        'image_path',
+      ],
     });
 
     if (!user) {
       throw new NotFoundException('Email or Password is incorrect!');
     }
-    return user.id;
+    return user;
   }
 
   async getAllProfessionals(): Promise<User[]> {
@@ -77,6 +90,25 @@ export class UserService {
   ): Promise<User | undefined> {
     return this.userRepository.findOne({
       where: { role: 2, id: professionalUserData },
+      select: [
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+        'role',
+        'phone',
+        'location_tag',
+        'address',
+        'expertise',
+        'description',
+        'image_path',
+      ],
+    });
+  }
+
+  async getUserById(userID: number): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { id: userID },
       select: [
         'id',
         'first_name',
