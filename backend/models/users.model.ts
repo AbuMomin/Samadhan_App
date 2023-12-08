@@ -2,42 +2,42 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity('users')
 export class User {
-  @PrimaryGeneratedColumn('increment', { name: 'ID' })
-  ID: number;
+  @PrimaryGeneratedColumn('increment', { name: 'id' })
+  id: number;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
-  FIRST_NAME: string;
+  first_name: string;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
-  LAST_NAME: string;
+  last_name: string;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
-  EMAIL: string;
+  email: string;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
-  PASSWORD: string;
+  password: string;
 
   @Column({ type: 'int', nullable: false })
-  ROLE: number;
+  role: number;
 
   @Column({ type: 'varchar', length: 20, nullable: false })
-  PHONE: string;
+  phone: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  LOCATION_TAG: string;
+  location_tag: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  ADDRESS: string;
+  address: string;
 
   @Column({ type: 'varchar', length: 19, nullable: false })
-  NID: string;
+  nid: string;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
-  EXPERTISE: string;
+  expertise: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  DESCRIPTION: string;
+  description: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
-  IMAGE_PATH: string;
+  image_path: string;
 }
