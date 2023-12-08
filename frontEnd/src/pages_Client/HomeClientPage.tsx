@@ -14,8 +14,17 @@ const HomePageClient: React.FC = (props: any) => {
   const [searchText, setSearchText] = useState("");
   const [professionals, setProfessionals] = useState([]);
 
-  const navProfileHandler = () => {
-    props.navigation.navigate("ProProfilePage");
+  const navProfileHandler = async (id: number) => {
+    try {
+      const response = await axios.get(
+        `http://192.168.0.106:3000/user/professional/?proID=${id}`
+      );
+      const proUserData = response.data;
+      // console.log(proUserData);
+      props.navigation.navigate("ProProfilePage", { proUserData });
+    } catch (error) {
+      console.error("Error fetching Profile of professionals: ", error);
+    }
   };
 
   // Fetch Professionals on component mount or when the search term changes
@@ -35,7 +44,7 @@ const HomePageClient: React.FC = (props: any) => {
         }
         setProfessionals(response.data);
       } catch (error) {
-        console.error("Error fetching professionals:", error);
+        console.error("Error fetching professionals: ", error);
       }
     };
 
@@ -82,14 +91,14 @@ const HomePageClient: React.FC = (props: any) => {
             <TouchableOpacity
               key={professional.id}
               style={styles.professionalCard}
-              onPress={navProfileHandler}
+              onPress={() => navProfileHandler(parseInt(professional.id, 10))}
             >
               <Image
                 source={require("../../assets/person.png")}
                 style={styles.professionalImage}
               />
               <Text style={styles.professionalName}>
-                <Text>{professional.last_name}</Text>
+                <Text>{professional.first_name}</Text>
               </Text>
               <Text style={styles.professionalExpertise}>
                 <Text>{professional.expertise}</Text>

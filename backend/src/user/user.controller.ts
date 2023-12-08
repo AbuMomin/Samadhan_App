@@ -30,4 +30,9 @@ export class UserController {
   getSearchedProfessionals(@Query('searchText') searchText: string) {
     return this.userService.getSearchedProfessionals(searchText);
   }
+
+  @Get('professional')
+  getProfessionalById(@Query('proID') professionalUserID: number) {
+    return this.userService.getProfessionalById(professionalUserID);
+  }
 }

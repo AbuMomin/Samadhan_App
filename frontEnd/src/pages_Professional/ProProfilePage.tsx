@@ -1,7 +1,19 @@
 import React from "react";
-import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  StyleSheet,
+} from "react-native";
 
-const ProProfilePage: React.FC = () => {
+const ProProfilePage: React.FC = (props: any) => {
+  const { proUserData } = props.route.params;
+  const expertises: string[] = proUserData.expertise.split(",");
+
+  console.log(proUserData);
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileHeader}>
@@ -9,26 +21,47 @@ const ProProfilePage: React.FC = () => {
           source={require("../../assets/profile.png")}
           style={styles.profileImage}
         />
-        <Text style={styles.fullName}>John Doe</Text>
-        <Text style={styles.contactNumber}>Contact: +123456789</Text>
-        <Text style={styles.locationTag}>Location: Home</Text>
-        <Text style={styles.fullAddress}>123 Main Street, City</Text>
+        <Text style={styles.fullName}>
+          {proUserData.first_name} {proUserData.last_name}
+        </Text>
+        <Text style={styles.locationTag}>
+          Location Tag: {proUserData.location_tag}
+        </Text>
+        <Text style={styles.fullAddress}>{proUserData.address}</Text>
       </View>
 
+      {/* Chat and Call Sections */}
+      <View style={styles.actionSection}>
+        {/* add onPress */}
+        <TouchableOpacity style={styles.actionButton}>
+          <Image
+            source={require("../../assets/chat.png")}
+            style={styles.actionIcon}
+          />
+          <Text style={styles.actionText}>Chat</Text>
+        </TouchableOpacity>
+
+        {/* add onPress */}
+        <TouchableOpacity style={styles.actionButton}>
+          <Image
+            source={require("../../assets/call.png")}
+            style={styles.actionIcon}
+          />
+          <Text style={styles.actionText}>Call: {proUserData.phone}</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Expertise Card */}
       <View style={styles.expertiseCard}>
         <Text style={styles.expertiseTitle}>Expertises</Text>
-        <View style={styles.expertiseItem}>
-          <Text style={styles.expertiseText}>Electronics Repair</Text>
-        </View>
-        <View style={styles.expertiseItem}>
-          <Text style={styles.expertiseText}>Electrician</Text>
-        </View>
-        {/* Add more expertise items as needed */}
+        {expertises.map((expertise, index) => (
+          <View style={styles.expertiseItem} key={index}>
+            <Text style={styles.expertiseText}> {expertise}</Text>
+          </View>
+        ))}
       </View>
 
-      <Text style={styles.description}>
-        Passionate about providing top-notch service!
-      </Text>
+      <Text style={styles.description}>{proUserData.description}</Text>
 
       <View style={styles.ratingContainer}>
         <Text style={styles.rating}>Rating: 4.8</Text>
@@ -46,7 +79,7 @@ const styles = StyleSheet.create({
   },
   profileHeader: {
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 3,
   },
   profileImage: {
     width: 120,
@@ -75,7 +108,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   expertiseCard: {
-    backgroundColor: "#3498db",
+    backgroundColor: "#8ACDD7",
     borderRadius: 8,
     padding: 16,
     marginBottom: 16,
@@ -114,6 +147,23 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#333",
     fontWeight: "bold",
+  },
+  actionSection: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 5,
+    marginBottom: 10,
+  },
+  actionButton: {
+    alignItems: "center",
+  },
+  actionIcon: {
+    width: 40,
+    height: 40,
+    marginBottom: 8,
+  },
+  actionText: {
+    fontSize: 16,
   },
 });
 

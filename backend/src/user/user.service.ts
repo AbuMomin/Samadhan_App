@@ -71,4 +71,25 @@ export class UserService {
       ],
     });
   }
+
+  async getProfessionalById(
+    professionalUserData: number,
+  ): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { role: 2, id: professionalUserData },
+      select: [
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+        'role',
+        'phone',
+        'location_tag',
+        'address',
+        'expertise',
+        'description',
+        'image_path',
+      ],
+    });
+  }
 }
