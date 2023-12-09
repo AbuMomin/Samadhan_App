@@ -119,12 +119,19 @@
 // export default AccountPage;
 
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { useAuth } from "../providers/AuthProvider";
 // import { useNavigation } from "@react-navigation/native";
 
 const AccountPage = (props: any) => {
-  const { logout } = useAuth();
+  const { logout, role } = useAuth();
+
+  let userRole;
+  if (role == 1) {
+    userRole = "User";
+  } else {
+    userRole = "Professional";
+  }
 
   const handleLogout = () => {
     logout();
@@ -132,6 +139,13 @@ const AccountPage = (props: any) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.profileHeader}>
+        <Image
+          source={require("../../assets/profile.png")}
+          style={styles.profileImage}
+        />
+        <Text style={styles.fullName}>Role : {userRole}</Text>
+      </View>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Profile Settings</Text>
       </TouchableOpacity>
@@ -177,6 +191,26 @@ const styles = StyleSheet.create({
   },
   logoutText: {
     color: "#fff",
+  },
+  profileImage: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 8,
+  },
+  fullName: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 4,
+  },
+  profileHeader: {
+    alignItems: "center",
+    marginBottom: 3,
+  },
+  logo: {
+    width: 40,
+    height: 40,
+    marginRight: 8,
   },
 });
 

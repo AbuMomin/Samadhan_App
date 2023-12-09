@@ -9,8 +9,10 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
+import { useAuth } from "../providers/AuthProvider";
 
 const HomePageClient: React.FC = (props: any) => {
+  const { role } = useAuth();
   const [searchText, setSearchText] = useState("");
   const [professionals, setProfessionals] = useState([]);
 
@@ -82,30 +84,33 @@ const HomePageClient: React.FC = (props: any) => {
           Find professionals for plumbing, electric, electronics, stove,
           furniture repair and more!
         </Text>
-
-        <ScrollView
-          contentContainerStyle={styles.professionalsContainer}
-          horizontal={false}
-        >
-          {professionals.map((professional) => (
-            <TouchableOpacity
-              key={professional.id}
-              style={styles.professionalCard}
-              onPress={() => navProfileHandler(parseInt(professional.id, 10))}
-            >
-              <Image
-                source={require("../../assets/person.png")}
-                style={styles.professionalImage}
-              />
-              <Text style={styles.professionalName}>
-                <Text>{professional.first_name}</Text>
-              </Text>
-              <Text style={styles.professionalExpertise}>
-                <Text>{professional.expertise}</Text>
-              </Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        {role == 1 ? (
+          <ScrollView
+            contentContainerStyle={styles.professionalsContainer}
+            horizontal={false}
+          >
+            {professionals.map((professional) => (
+              <TouchableOpacity
+                key={professional.id}
+                style={styles.professionalCard}
+                onPress={() => navProfileHandler(parseInt(professional.id, 10))}
+              >
+                <Image
+                  source={require("../../assets/person.png")}
+                  style={styles.professionalImage}
+                />
+                <Text style={styles.professionalName}>
+                  <Text>{professional.first_name}</Text>
+                </Text>
+                <Text style={styles.professionalExpertise}>
+                  <Text>{professional.expertise}</Text>
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        ) : (
+          <></>
+        )}
       </View>
     </View>
   );
