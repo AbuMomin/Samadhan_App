@@ -17,7 +17,7 @@ const HomePageClient: React.FC = (props: any) => {
   const navProfileHandler = async (id: number) => {
     try {
       const response = await axios.get(
-        `http://192.168.0.106:3000/user/professional/?proID=${id}`
+        `http://10.10.243.85:3000/user/professional/?proID=${id}`
       );
       const proUserData = response.data;
       // console.log(proUserData);
@@ -35,11 +35,11 @@ const HomePageClient: React.FC = (props: any) => {
         if (searchText) {
           // finding professional based on search
           response = await axios.get(
-            `http://192.168.0.106:3000/user/search-professionals/?searchText=${searchText}`
+            `http://10.10.243.85:3000/user/search-professionals/?searchText=${searchText}`
           );
         } else {
           response = await axios.get(
-            `http://192.168.0.106:3000/user/all-professionals`
+            `http://10.10.243.85:3000/user/all-professionals`
           );
         }
         setProfessionals(response.data);

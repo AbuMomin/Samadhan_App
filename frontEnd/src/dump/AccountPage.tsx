@@ -2,6 +2,7 @@
 // import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 // import { useAuth } from "../providers/AuthProvider";
 // import axios from "axios";
+// import { API_BASE_URL } from 'react-native-dotenv';
 
 // const AccountPage = (props: any) => {
 //   const { userId, logout } = useAuth();

@@ -36,7 +36,7 @@ const LoginPage: React.FC = (props: any) => {
       };
       try {
         const response = await axios.post(
-          "http://192.168.0.106:3000/user/login",
+          "http://10.10.243.85:3000/user/login",
           loginData
         );
         if (response.data) {

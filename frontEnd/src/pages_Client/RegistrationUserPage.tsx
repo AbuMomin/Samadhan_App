@@ -103,7 +103,7 @@ const RegistrationUserPage: React.FC = (props: any) => {
       };
       try {
         const response = await axios.post(
-          "http://192.168.0.106:3000/user/regUser",
+          "http://10.10.243.85:3000/user/regUser",
           userData
         );
         // console.log(response.data);
