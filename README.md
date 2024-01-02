@@ -2,10 +2,11 @@
 ---
 ## FrontEnd
 
-React-Native
+- React-Native
 
 ## BackEnd
 
-Nest.js
-PostgreSQL
+- Nest.js
+
+- PostgreSQL
 
