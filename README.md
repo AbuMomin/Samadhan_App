@@ -1,5 +1,5 @@
 # Samadhan_App
-
+---
 ## FrontEnd
 
 React-Native
@@ -7,9 +7,5 @@ React-Native
 ## BackEnd
 
 Nest.js
-
-## FrontEnd
-
 PostgreSQL
 
----
